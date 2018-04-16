@@ -1,6 +1,6 @@
 #include "literature.h"
 
-
+/*
 Literature Literature::searchLiterature(string keyWord)
 {
 	for (std::list<Literature>::iterator i = Llist.begin(); i != Llist.end(); ++i) {
@@ -9,7 +9,7 @@ Literature Literature::searchLiterature(string keyWord)
 		}
 	}
 }
-
+*/
 void Literature::setAuthors(string authors)
 {
 	this->_authors = authors;

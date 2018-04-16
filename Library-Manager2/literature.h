@@ -4,7 +4,6 @@
 #include <list>
 #include "resource.h"
 
-using namespace std;
 
 class Literature : public Resource
 {
@@ -13,7 +12,7 @@ public:
     //~Literature();
 
     //查找名称中包含关键词@keyWord的任何一个文献（可以是图书或论文）
-    static Literature searchLiterature(string keyWord);
+    //static Literature searchLiterature(string keyWord);
 
 
     void setAuthors(string authors);
@@ -25,7 +24,7 @@ public:
 protected:
     string _authors;
     string _pub_time;
-	static std::list<Literature> Llist;//自己加的
+	//static std::list<Literature> Llist;//自己加的
 };
 
 #endif // LITERATURE_H

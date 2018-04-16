@@ -8,7 +8,7 @@ class Resource
 {
 public:
     static string RESOURCE_DIR;
-    Resource();
+    //Resource();
     //~Resource();
 
     void setName(string name);
@@ -44,5 +44,7 @@ protected:
     //每行的格式（key:value)读取相应的属性。
 
 };
+
+//string Resource::RESOURCE_DIR = "c";
 
 #endif // RESOURCE_H

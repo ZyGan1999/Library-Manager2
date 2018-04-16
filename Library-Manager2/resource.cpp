@@ -1,9 +1,6 @@
 #include "resource.h"
 
-Resource::Resource()
-{
-	RESOURCE_DIR = "c:\\Resource2\\";
-}
+string Resource::RESOURCE_DIR = "c:\\Resource2\\";
 
 void Resource::setName(string name)
 {
@@ -22,7 +19,7 @@ void Resource::setFileName(string fileName)
 
 bool Resource::save(string content)
 {
-	ofstream SaveFile(RESOURCE_DIR + _file_name + ".txt");
+	ofstream SaveFile(RESOURCE_DIR + _file_name);
 	if (!SaveFile) return false;
 
 	SaveFile << content;
@@ -31,7 +28,7 @@ bool Resource::save(string content)
 
 string Resource::load()
 {
-	ifstream ReadFile(RESOURCE_DIR + _file_name + ".txt");
+	ifstream ReadFile(RESOURCE_DIR + _file_name);
 	if (!ReadFile) return "";
 	
 	string _content;

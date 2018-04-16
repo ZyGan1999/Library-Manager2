@@ -147,6 +147,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="book.cpp" />
     <ClCompile Include="Library-Manager2.cpp" />
     <ClCompile Include="literature.cpp" />
     <ClCompile Include="paper.cpp" />
@@ -155,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="book.h" />
     <ClInclude Include="literature.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="paper.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
