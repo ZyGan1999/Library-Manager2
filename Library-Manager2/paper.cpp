@@ -2,13 +2,13 @@
 
 Paper::Paper(string name, string id, string filename, string content, string authors, string pubtime,string journal)
 {
-	setName(name);
-	setID(id);
+	setName(name); save(name + '\n');
+	setID(id); save(id + '\n');
 	setFileName(filename);
+	setAuthors(authors); save(authors + '\n');
+	setPubTime(pubtime); save(pubtime + '\n');
+	setJournal(journal); save(journal + '\n');
 	save(content);
-	setAuthors(authors);
-	setPubTime(pubtime);
-	setJournal(journal);
 }
 
 string Paper::viewContent()

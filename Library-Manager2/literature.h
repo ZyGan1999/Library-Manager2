@@ -12,7 +12,7 @@ public:
     //~Literature();
 
     //查找名称中包含关键词@keyWord的任何一个文献（可以是图书或论文）
-    //static Literature searchLiterature(string keyWord);
+    static Literature searchLiterature(string keyWord);
 
 
     void setAuthors(string authors);

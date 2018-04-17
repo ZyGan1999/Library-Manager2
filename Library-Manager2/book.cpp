@@ -2,14 +2,14 @@
 
 Book::Book(string name, string id, string filename, string content, string authors, string pubtime, string ISBN)
 {
-	setName(name);
-	setID(id);
+	setName(name); save(name + '\n');
+	setID(id); save(id + '\n');
 	setFileName(filename);
-	save(content);
-	setAuthors(authors);
-	setPubTime(pubtime);
-	setISBN(ISBN);
-	setHoldBy("");
+	setAuthors(authors); save(authors + '\n');
+	setPubTime(pubtime); save(pubtime + '\n');
+	setISBN(ISBN); save(ISBN + '\n');
+	save(content + '\n');
+	setHoldBy(""); 
 }
 
 void Book::borrowBook(string user)
