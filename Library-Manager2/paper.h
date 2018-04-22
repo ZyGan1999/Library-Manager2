@@ -1,9 +1,10 @@
+#pragma once
 #ifndef PAPER_H
 #define PAPER_H
-#include <string>
+
 #include "literature.h"
 
-using namespace std;
+
 class Paper : public Literature
 {
 public:

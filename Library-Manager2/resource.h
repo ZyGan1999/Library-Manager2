@@ -1,3 +1,4 @@
+#pragma once
 #ifndef RESOURCE_H
 #define RESOURCE_H
 
@@ -11,6 +12,7 @@ public:
     //Resource();
     //~Resource();
 
+	void setContent(string content);
     void setName(string name);
     void setID(string id);
     void setFileName(string fileName);
@@ -27,9 +29,10 @@ public:
     const string & getName() const;
     const string & getID() const;
     const string & getFileName() const;
-
+	const string & getContent()const;
 
 protected:
+	string content;
     string _name;//资源名称
     string _id;//系统编号
     string _file_name;//文件名称

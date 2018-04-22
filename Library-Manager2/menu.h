@@ -2,6 +2,43 @@
 #include<iostream>
 #include"book.h"
 #include"paper.h"
+
+map<string, Literature>index;
+map<string, Book>bindex;
+
+void LoadItAll() {
+	ifstream ReadName("c:\\Resource2\\list.txt");
+	string curName;
+	while (!ReadName.eof()) {
+		getline(ReadName, curName);
+		ifstream ReadFile("c:\\Resource2\\" + curName + ".txt");
+		bool isBook = false;
+		string line1;
+		string curLine;
+		getline(ReadFile, line1);
+		if (line1 == curName) isBook = true;
+		
+		if (isBook) {
+			string id; string authors; string pubtime; string ISBN; string holdby; string content;
+			getline(ReadFile, id); getline(ReadFile, authors); getline(ReadFile, pubtime); getline(ReadFile, ISBN);
+			getline(ReadFile, content); getline(ReadFile, holdby);
+			Book b(curName, id, curName + ".txt", content, authors, pubtime, ISBN);
+			b.borrowBook(holdby);
+
+			index[curName] = b;
+			bindex[curName] = b;
+		}
+		else {
+			string id; string authors; string pubtime; string journal; string content;
+			getline(ReadFile, id); getline(ReadFile, authors);
+			getline(ReadFile, pubtime); getline(ReadFile, journal);
+			Paper p(curName, id, curName + ".txt", line1, authors, pubtime, journal);
+
+			index[curName] = p;
+		}
+	}
+}
+
 void menu() {
 	std::cout << "请选择您要进行的操作" << std::endl;
 	std::cout << "1、录入图书" << std::endl;
@@ -10,6 +47,7 @@ void menu() {
 	std::cout << "4、借出图书" << std::endl;
 	std::cout << "5、归还图书" << std::endl;
 	std::cout << "6、在线阅读" << std::endl;
+	std::cout << "7、保存退出" << std::endl;
 }
 
 void AddBook() {
@@ -28,6 +66,8 @@ void AddBook() {
 
 	Book b(name, id, name + ".txt", content, authors, pubtime, ISBN);
 	/*string name, string id, string filename, string content, string authors, string pubtime, string ISBN*/
+	index[name] = b;
+	bindex[name] = b;
 }
 
 void AddPaper() {
@@ -46,28 +86,71 @@ void AddPaper() {
 
 	Paper p(name, id, name + ".txt", content, authors, pubtime, journal);
 	/*string name,string id,string filename,string content,string authors,string pubtime,string journal*/
+	index[name] = p;
 }
 
 void Query() {
 	std::cout << "请输入查询的关键词" << std::endl;
 	string keyword; cin >> keyword;
-	//???
+	
+	Literature l = Literature::searchLiterature(keyword);
+	if (l.getID() != "NotExsist") cout << l.getName() << ' ' << l.getAuthors() << endl;
+	else cout << "未找到匹配的文献资料！" << endl;
 }
 
 void lendBook() {
-	cout << "请输入借出的图书的ID" << endl;
-	string id; cin >> id;
-	//???
+	cout << "请输入借出的图书的名字" << endl;
+	string name; cin >> name;
+	cout << "请输入借阅读者的用户名" << endl;
+	string user; cin >> user;
+
+	bindex[name].borrowBook(user);
 }
 
 void backBook() {
-	cout << "请输入归还的图书的ID" << endl;
-	string id; cin >> id;
-	//???
+	cout << "请输入归还的图书的名字" << endl;
+	string name; cin >> name;
+	
+	bindex[name].returnBook();
 }
 
 void readOnline() {
 	cout << "请输入要在线阅读的论文的名字" << endl;
 	string name; cin >> name;
-	//没有用到load函数？
+	cout << index[name].load() << endl;
+}
+
+
+void SaveItAll() {
+	cout << "谢谢使用！再见！" << endl;
+
+	ofstream SaveName("c:\\Resource2\\list.txt", ios::ate);
+	bool flag = false;
+	for (map<string, Literature>::iterator i = index.begin(); i != index.end(); ++i) {
+		if (flag) {
+			SaveName << endl;
+		}
+		SaveName << i->second.getName();
+		flag = true;
+	}
+
+	for (map<string, Book>::iterator i = bindex.begin(); i != bindex.end(); ++i) {
+		string curName = i->second.getName();
+		ofstream SaveBook("c:\\Resource\\" + curName + ".txt", ios::ate);
+		SaveBook << i->second.getName() << endl << i->second.getID() << endl << i->second.getAuthors() << endl
+			<< i->second.getPubTime() << endl << i->second.getISBN() << endl << i->second.getContent() << endl
+			<< i->second.getHoldBy();
+	}
+}
+
+Literature Literature::searchLiterature(string keyWord)
+{
+	map<string, Literature>::iterator i;
+	for (i = index.begin(); i != index.end(); ++i) {
+		if ((i->second).getName().find(keyWord) != string::npos) {
+			return i->second;
+		}
+	}
+	Literature l; l.setID("NotExsist");
+	return l;
 }

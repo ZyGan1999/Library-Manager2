@@ -2,6 +2,11 @@
 
 string Resource::RESOURCE_DIR = "c:\\Resource2\\";
 
+void Resource::setContent(string content)
+{
+	this->content = content;
+}
+
 void Resource::setName(string name)
 {
 	this->_name = name;
@@ -19,7 +24,7 @@ void Resource::setFileName(string fileName)
 
 bool Resource::save(string content)
 {
-	ofstream SaveFile(RESOURCE_DIR + _file_name);
+	ofstream SaveFile(RESOURCE_DIR + _file_name,ios::app);
 	if (!SaveFile) return false;
 
 	SaveFile << content;
@@ -49,4 +54,9 @@ const string & Resource::getID() const
 const string & Resource::getFileName() const
 {
 	return this->_file_name;
+}
+
+const string & Resource::getContent() const
+{
+	return this->content;
 }

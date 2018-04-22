@@ -1,15 +1,7 @@
 #include "literature.h"
 
-/*
-Literature Literature::searchLiterature(string keyWord)
-{
-	for (std::list<Literature>::iterator i = Llist.begin(); i != Llist.end(); ++i) {
-		if (i->getName().find(keyWord, 0) != string::npos) {
-			return (*i);
-		}
-	}
-}
-*/
+
+
 void Literature::setAuthors(string authors)
 {
 	this->_authors = authors;

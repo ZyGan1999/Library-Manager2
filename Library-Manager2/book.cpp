@@ -1,14 +1,14 @@
 #include "book.h"
 
-Book::Book(string name, string id, string filename, string content, string authors, string pubtime, string ISBN)
+Book::Book(string name, string id, string filename, string content , string authors ,string pubtime, string ISBN)
 {
+	setFileName(filename);
 	setName(name); save(name + '\n');
 	setID(id); save(id + '\n');
-	setFileName(filename);
 	setAuthors(authors); save(authors + '\n');
 	setPubTime(pubtime); save(pubtime + '\n');
 	setISBN(ISBN); save(ISBN + '\n');
-	save(content + '\n');
+	setContent(content); save(content + '\n');
 	setHoldBy(""); 
 }
 

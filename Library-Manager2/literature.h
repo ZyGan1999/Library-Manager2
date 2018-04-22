@@ -1,9 +1,10 @@
+#pragma once
 #ifndef LITERATURE_H
 #define LITERATURE_H
-#include <string>
-#include <list>
-#include "resource.h"
 
+#include <list>
+#include <map>
+#include "resource.h"
 
 class Literature : public Resource
 {
@@ -24,7 +25,9 @@ public:
 protected:
     string _authors;
     string _pub_time;
+	
 	//static std::list<Literature> Llist;//自己加的
 };
+
 
 #endif // LITERATURE_H
