@@ -10,6 +10,8 @@ class Book : public Literature
 public:
     Book(string name = "", string id = "", string filename = "", string content = "", string authors = "",
 		string pubtime = "", string ISBN = "");
+	Book(int d,string name = "", string id = "", string filename = "", string content = "", string authors = "",
+		string pubtime = "", string ISBN = "");
     //~Book();
 
     void borrowBook(string user);//借书，记录该图书被某用户借阅

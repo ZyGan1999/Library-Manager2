@@ -6,6 +6,7 @@
 map<string, Literature>index;
 map<string, Book>bindex;
 
+
 void LoadItAll() {
 	ifstream ReadName("c:\\Resource2\\list.txt");
 	string curName;
@@ -22,7 +23,7 @@ void LoadItAll() {
 			string id; string authors; string pubtime; string ISBN; string holdby; string content;
 			getline(ReadFile, id); getline(ReadFile, authors); getline(ReadFile, pubtime); getline(ReadFile, ISBN);
 			getline(ReadFile, content); getline(ReadFile, holdby);
-			Book b(curName, id, curName + ".txt", content, authors, pubtime, ISBN);
+			Book b(1,curName, id, curName + ".txt", content, authors, pubtime, ISBN);
 			b.borrowBook(holdby);
 
 			index[curName] = b;
@@ -32,7 +33,7 @@ void LoadItAll() {
 			string id; string authors; string pubtime; string journal; string content;
 			getline(ReadFile, id); getline(ReadFile, authors);
 			getline(ReadFile, pubtime); getline(ReadFile, journal);
-			Paper p(curName, id, curName + ".txt", line1, authors, pubtime, journal);
+			Paper p(1,curName, id, curName + ".txt", line1, authors, pubtime, journal);
 
 			index[curName] = p;
 		}
@@ -62,7 +63,7 @@ void AddBook() {
 	std::cout << "请输入内容" << std::endl;
 	string content; cin >> content;
 
-	string id = "1";//解决一下
+	string id = "id" + ISBN;
 
 	Book b(name, id, name + ".txt", content, authors, pubtime, ISBN);
 	/*string name, string id, string filename, string content, string authors, string pubtime, string ISBN*/
@@ -82,7 +83,7 @@ void AddPaper() {
 	std::cout << "请输入内容" << std::endl;
 	string content; cin >> content;
 
-	string id = "1";//解决一下
+	string id = "id" + journal + name;
 
 	Paper p(name, id, name + ".txt", content, authors, pubtime, journal);
 	/*string name,string id,string filename,string content,string authors,string pubtime,string journal*/
@@ -124,20 +125,20 @@ void readOnline() {
 void SaveItAll() {
 	cout << "谢谢使用！再见！" << endl;
 
-	ofstream SaveName("c:\\Resource2\\list.txt", ios::ate);
+	ofstream SaveName("c:\\Resource2\\list.txt");
 	bool flag = false;
 	for (map<string, Literature>::iterator i = index.begin(); i != index.end(); ++i) {
 		if (flag) {
 			SaveName << endl;
 		}
-		SaveName << i->second.getName();
+		SaveName << i->first;
 		flag = true;
 	}
 
 	for (map<string, Book>::iterator i = bindex.begin(); i != bindex.end(); ++i) {
-		string curName = i->second.getName();
-		ofstream SaveBook("c:\\Resource\\" + curName + ".txt", ios::ate);
-		SaveBook << i->second.getName() << endl << i->second.getID() << endl << i->second.getAuthors() << endl
+		string curName = i->first;
+		ofstream SaveBook("c:\\Resource2\\" + curName + ".txt");
+		SaveBook << i->first << endl << i->second.getID() << endl << i->second.getAuthors() << endl
 			<< i->second.getPubTime() << endl << i->second.getISBN() << endl << i->second.getContent() << endl
 			<< i->second.getHoldBy();
 	}
@@ -154,3 +155,4 @@ Literature Literature::searchLiterature(string keyWord)
 	Literature l; l.setID("NotExsist");
 	return l;
 }
+

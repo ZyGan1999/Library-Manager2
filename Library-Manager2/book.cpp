@@ -12,6 +12,18 @@ Book::Book(string name, string id, string filename, string content , string auth
 	setHoldBy(""); 
 }
 
+Book::Book(int d,string name, string id, string filename, string content, string authors, string pubtime, string ISBN)
+{
+	setFileName(filename);
+	setName(name); 
+	setID(id); 
+	setAuthors(authors); 
+	setPubTime(pubtime); 
+	setISBN(ISBN); 
+	setContent(content); 
+	setHoldBy("");
+}
+
 void Book::borrowBook(string user)
 {
 	setHoldBy(user);

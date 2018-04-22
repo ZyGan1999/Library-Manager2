@@ -9,6 +9,7 @@ class Paper : public Literature
 {
 public:
     Paper(string name,string id,string filename,string content,string authors,string pubtime,string journal);
+	Paper(int d,string name, string id, string filename, string content, string authors, string pubtime, string journal);
     //~Paper();
 
     string viewContent();//查看论文的内容；该内容应被记录在论文的文件中

@@ -13,6 +13,17 @@ Paper::Paper(string name, string id, string filename, string content, string aut
 	
 }
 
+Paper::Paper(int d,string name, string id, string filename, string content, string authors, string pubtime, string journal)
+{
+	setFileName(filename);
+	setContent(content); 
+	setName(name);
+	setID(id); 
+	setAuthors(authors); 
+	setPubTime(pubtime); 
+	setJournal(journal); 
+}
+
 string Paper::viewContent()
 {
 	return load();
