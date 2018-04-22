@@ -6,7 +6,7 @@
 map<string, Literature>index;
 map<string, Book>bindex;
 
-
+/*将文件内容加载到索引中*/
 void LoadItAll() {
 	ifstream ReadName("c:\\Resource2\\list.txt");
 	string curName;
@@ -19,7 +19,7 @@ void LoadItAll() {
 		getline(ReadFile, line1);
 		if (line1 == curName) isBook = true;
 		
-		if (isBook) {
+		if (isBook) {//对于书籍的处理方式
 			string id; string authors; string pubtime; string ISBN; string holdby; string content;
 			getline(ReadFile, id); getline(ReadFile, authors); getline(ReadFile, pubtime); getline(ReadFile, ISBN);
 			getline(ReadFile, content); getline(ReadFile, holdby);
@@ -29,7 +29,7 @@ void LoadItAll() {
 			index[curName] = b;
 			bindex[curName] = b;
 		}
-		else {
+		else {//对于论文的处理方式
 			string id; string authors; string pubtime; string journal; string content;
 			getline(ReadFile, id); getline(ReadFile, authors);
 			getline(ReadFile, pubtime); getline(ReadFile, journal);
@@ -40,7 +40,7 @@ void LoadItAll() {
 	}
 }
 
-void menu() {
+void menu() {//主菜单
 	std::cout << "请选择您要进行的操作" << std::endl;
 	std::cout << "1、录入图书" << std::endl;
 	std::cout << "2、录入论文" << std::endl;
@@ -121,7 +121,7 @@ void readOnline() {
 	cout << index[name].load() << endl;
 }
 
-
+/*将索引中的内容存入到文件中*/
 void SaveItAll() {
 	cout << "谢谢使用！再见！" << endl;
 

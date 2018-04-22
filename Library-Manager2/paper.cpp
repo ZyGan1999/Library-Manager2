@@ -1,7 +1,7 @@
 #include "paper.h"
 
 Paper::Paper(string name, string id, string filename, string content, string authors, string pubtime,string journal)
-{
+{//用于录入论文的构造函数
 	
 	setFileName(filename);
 	setContent(content); save(content + '\n');
@@ -14,7 +14,7 @@ Paper::Paper(string name, string id, string filename, string content, string aut
 }
 
 Paper::Paper(int d,string name, string id, string filename, string content, string authors, string pubtime, string journal)
-{
+{//用于从文件重构索引的构造函数
 	setFileName(filename);
 	setContent(content); 
 	setName(name);

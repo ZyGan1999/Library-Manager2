@@ -1,7 +1,7 @@
 #include "book.h"
 
 Book::Book(string name, string id, string filename, string content , string authors ,string pubtime, string ISBN)
-{
+{//用于录入书籍的构造函数
 	setFileName(filename);
 	setName(name); save(name + '\n');
 	setID(id); save(id + '\n');
@@ -13,7 +13,7 @@ Book::Book(string name, string id, string filename, string content , string auth
 }
 
 Book::Book(int d,string name, string id, string filename, string content, string authors, string pubtime, string ISBN)
-{
+{//用于从文件重构索引的构造函数
 	setFileName(filename);
 	setName(name); 
 	setID(id); 
